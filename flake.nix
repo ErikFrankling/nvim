@@ -174,6 +174,18 @@
             nvim-web-devicons
             plenary-nvim
           ];
+
+          custom-copilot = [
+            copilot-lua
+            copilot-lualine
+          ];
+          custom-lualine = [
+            lualine-nvim
+            nvim-web-devicons
+          ];
+          custom-snacks = [
+            snacks-nvim
+          ];
         };
 
         # not loaded automatically at startup.
@@ -245,6 +257,7 @@
             # your alias may not conflict with your other packages.
             aliases = [ "vim" ];
             # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
+            withNodeJs = true;
           };
           # and a set of categories that you want
           # (and other information to pass to lua)
@@ -264,6 +277,8 @@
             # so it doesnt have a category above.
             # but we can still send the info from nix to lua that we want it!
             kickstart-gitsigns = true;
+
+            custom-snacks = false;
 
             # we can pass whatever we want actually.
             have_nerd_font = true;
