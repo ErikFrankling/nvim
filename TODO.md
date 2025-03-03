@@ -1,0 +1,14 @@
+- [ ] Markdown
+- [ ] C-s
+- [ ] dont clear on yank
+- [ ] install in nixos
+- [ ] all lsp
+- [ ] formating
+- [ ] rg entier project
+- [ ] copilot and lsp need th find project root so they have all necesary context
+- [ ] harpoon
+- [ ] several open files in one session
+- [ ] copilot togle
+- [ ] C-Space
+- [ ] Make sure all is ported
+
