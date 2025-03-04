@@ -1,7 +1,9 @@
+# TODO
+
 - [ ] Markdown
-- [ ] C-s
-- [ ] dont clear on yank
-- [ ] install in nixos
+- [x] C-s
+- [x] dont clear on yank
+- [x] install in nixos
 - [ ] all lsp
 - [ ] formating
 - [ ] rg entier project
@@ -9,6 +11,6 @@
 - [ ] harpoon
 - [ ] several open files in one session
 - [ ] copilot togle
-- [ ] C-Space
+- [x] C-Space
 - [ ] Make sure all is ported
-
+- [ ] Copilot in all files
