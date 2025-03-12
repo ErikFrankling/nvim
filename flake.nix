@@ -186,6 +186,9 @@
           custom-snacks = [
             snacks-nvim
           ];
+          custom-markdown = [
+            markdown-preview-nvim
+          ];
         };
 
         # not loaded automatically at startup.

@@ -13,4 +13,5 @@
 - [ ] copilot togle
 - [x] C-Space
 - [ ] Make sure all is ported
-- [ ] Copilot in all files
+- [x] Copilot in all files
+- [ ] TODO.md from .dotfiles
