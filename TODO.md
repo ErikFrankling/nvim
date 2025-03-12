@@ -15,3 +15,4 @@
 - [ ] Make sure all is ported
 - [x] Copilot in all files
 - [ ] TODO.md from .dotfiles
+- [ ] copilot chat https://github.com/CopilotC-Nvim/CopilotChat.nvim
