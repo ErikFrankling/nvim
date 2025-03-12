@@ -138,7 +138,8 @@
             cmp_luasnip
             cmp-nvim-lsp
             cmp-path
-            tokyonight-nvim
+            # onedark-nvim
+            # tokyonight-nvim
             todo-comments-nvim
             mini-nvim
             nvim-treesitter.withAllGrammars
@@ -188,6 +189,10 @@
           ];
           custom-markdown = [
             markdown-preview-nvim
+          ];
+          custom-theme = [
+            # onedark-nvim
+            tokyonight-nvim
           ];
         };
 

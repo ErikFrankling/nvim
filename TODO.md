@@ -16,3 +16,5 @@
 - [x] Copilot in all files
 - [ ] TODO.md from .dotfiles
 - [ ] copilot chat https://github.com/CopilotC-Nvim/CopilotChat.nvim
+- [ ] git integration, git hunk
+- [ ] time tracker https://github.com/wakatime/vim-wakatime

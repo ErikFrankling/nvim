@@ -7,6 +7,8 @@ return {
       'AndreM222/copilot-lualine',
     },
     opts = {
+      -- theme = 'onedark',
+      theme = 'tokyonight',
       sections = {
         lualine_x = {
           {
