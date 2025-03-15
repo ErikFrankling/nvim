@@ -3,6 +3,15 @@
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
+-- Show hidden characters
+-- vim.cmd [[
+--   set list
+--   set listchars=tab:→\ ,space:·
+--   ]]
+--
+-- vim.o.softtabstop = 4
+-- vim.o.shiftwidth = 4
+
 -- Make line numbers default
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.

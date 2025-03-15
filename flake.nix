@@ -104,8 +104,6 @@
             fd
             stdenv.cc.cc
             nix-doc
-            lua-language-server
-            nixd
             stylua
           ];
           kickstart-debug = [
@@ -113,6 +111,14 @@
           ];
           kickstart-lint = [
             markdownlint-cli
+          ];
+          kickstart-lsp = [
+            lua-language-server
+            nixd
+            gopls
+            go
+            rust-analyzer
+            pyright
           ];
         };
 
@@ -138,8 +144,6 @@
             cmp_luasnip
             cmp-nvim-lsp
             cmp-path
-            # onedark-nvim
-            # tokyonight-nvim
             todo-comments-nvim
             mini-nvim
             nvim-treesitter.withAllGrammars
@@ -286,6 +290,13 @@
             # but we can still send the info from nix to lua that we want it!
             kickstart-gitsigns = true;
 
+            kickstart-lsp = true;
+
+
+            custom-copilot = true;
+            custom-lualine = true;
+            custom-markdown = true;
+            custom-theme = true;
             custom-snacks = false;
 
             # we can pass whatever we want actually.

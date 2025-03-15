@@ -1,6 +1,7 @@
 return {
   -- LSP Configuration & Plugins
   'neovim/nvim-lspconfig',
+  enabled = require('nixCatsUtils').enableForCategory 'kickstart-lsp',
   dependencies = {
     -- Automatically install LSPs and related tools to stdpath for Neovim
     {
