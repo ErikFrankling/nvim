@@ -97,7 +97,25 @@
         # this section is for dependencies that should be available
         # at RUN TIME for plugins. Will be available to PATH within neovim terminal
         # this includes LSPs
-        lspsAndRuntimeDeps = with pkgs; {
+        lspsAndRuntimeDeps = with pkgs; let 
+
+          yuckls = buildDotnetModule {
+            pname = "yuckls";
+            version = "";
+         
+            src = fetchFromGitHub {
+              owner = "Eugenenoble2005";
+              repo = "YuckLS";
+              rev = "7de35f514201d29f9cc12d742160d9774bd2c1ec";
+              hash = "sha256-HhxFVX9BHNydguGFZMd5FNZB06KxF34A9CqTzwJijes=";
+            };
+         
+            projectFile = "YuckLS/YuckLS.csproj";
+         
+            dotnet-sdk = dotnetCorePackages.dotnet_8.sdk;
+            nugetDeps = ./deps.nix;
+          };
+        in {
           general = [
             universal-ctags
             ripgrep
@@ -119,6 +137,9 @@
             go
             rust-analyzer
             pyright
+          ];
+          custom-yuckls = [
+            yuckls
           ];
         };
 
@@ -292,12 +313,12 @@
 
             kickstart-lsp = true;
 
-
             custom-copilot = true;
             custom-lualine = true;
             custom-markdown = true;
             custom-theme = true;
             custom-snacks = false;
+            custom-yuckls = true;
 
             # we can pass whatever we want actually.
             have_nerd_font = true;
