@@ -137,6 +137,7 @@
             go
             rust-analyzer
             pyright
+            typescript-language-server
           ];
           custom-yuckls = [
             yuckls
