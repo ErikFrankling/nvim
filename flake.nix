@@ -329,11 +329,8 @@
             custom-markdown = true;
             custom-theme = true;
             custom-snacks = false;
-<<<<<<< HEAD
             custom-latex = true;
-=======
             custom-yuckls = true;
->>>>>>> 7b358c97fd9fc3a9752aa7bcef0a4e027601ddb1
 
             # we can pass whatever we want actually.
             have_nerd_font = true;
