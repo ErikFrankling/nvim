@@ -106,7 +106,7 @@
             src = fetchFromGitHub {
               owner = "Eugenenoble2005";
               repo = "YuckLS";
-              rev = "7de35f514201d29f9cc12d742160d9774bd2c1ec";
+              rev = "ab4c0315cd6c77ef0ed3c620bde0ece48e4a5949";
               hash = "sha256-HhxFVX9BHNydguGFZMd5FNZB06KxF34A9CqTzwJijes=";
             };
          

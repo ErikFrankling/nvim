@@ -50,6 +50,20 @@ vim.opt.splitbelow = true
 vim.opt.list = true
 vim.opt.listchars = { tab = '→ ', trail = '·', nbsp = '␣', space = '⋅' }
 
+-- 80 column line marker
+vim.g.colorcolumn = '80'
+
+-- Preview substitutions live, as you type!
+vim.opt.inccommand = 'split'
+
+-- Show which line your cursor is on
+vim.opt.cursorline = true
+
+-- Minimal number of screen lines to keep above and below the cursor.
+vim.opt.scrolloff = 10
+
+vim.opt.termguicolors = true
+
 --[=[
 
 'tabstop' 'ts'		number	(default 8)
@@ -96,17 +110,3 @@ vim.opt.listchars = { tab = '→ ', trail = '·', nbsp = '␣', space = '⋅' }
 --]=]
 -- vim.o.softtabstop = 4
 -- vim.o.shiftwidth = 4
-
--- 80 column line marker
-vim.g.colorcolumn = '80'
-
--- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
-
--- Show which line your cursor is on
-vim.opt.cursorline = true
-
--- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
-
-vim.opt.termguicolors = true
