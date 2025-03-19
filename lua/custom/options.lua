@@ -3,15 +3,6 @@
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
--- Show hidden characters
--- vim.cmd [[
---   set list
---   set listchars=tab:→\ ,space:·
---   ]]
---
--- vim.o.softtabstop = 4
--- vim.o.shiftwidth = 4
-
 -- Make line numbers default
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
@@ -57,7 +48,16 @@ vim.opt.splitbelow = true
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = '→ ', trail = '·', nbsp = '␣', space = '⋅' }
+
+-- Show hidden characters
+-- vim.cmd [[
+--   set list
+--   set listchars=tab:→\ ,space:·
+--   ]]
+--
+-- vim.o.softtabstop = 4
+-- vim.o.shiftwidth = 4
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'

@@ -119,6 +119,12 @@
             go
             rust-analyzer
             pyright
+            texlab
+          ];
+          custom-latex = [
+            texlive.combined.scheme-full
+            texpresso
+            zathura
           ];
         };
 
@@ -197,6 +203,10 @@
           custom-theme = [
             # onedark-nvim
             tokyonight-nvim
+          ];
+          custom-latex = [
+            vimtex
+            texpresso-vim
           ];
         };
 
@@ -298,6 +308,7 @@
             custom-markdown = true;
             custom-theme = true;
             custom-snacks = false;
+            custom-latex = true;
 
             # we can pass whatever we want actually.
             have_nerd_font = true;
