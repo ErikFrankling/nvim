@@ -174,6 +174,7 @@
             cmp-path
             todo-comments-nvim
             mini-nvim
+            nvim-surround
             nvim-treesitter.withAllGrammars
             # This is for if you only want some of the grammars
             # (nvim-treesitter.withPlugins (
