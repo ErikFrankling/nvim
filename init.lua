@@ -112,6 +112,7 @@ require 'custom.options'
 require 'custom.keymaps'
 require 'custom.autocomd'
 require 'custom.yuckls'
+require 'custom.column'
 -- require 'custom.copilot_toggle'
 
 -- NOTE: nixCats: You might want to move the lazy-lock.json file

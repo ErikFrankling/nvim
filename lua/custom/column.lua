@@ -1,0 +1,41 @@
+-- local function wrapped_cc()
+--   local cc = vim.opt.colorcolumn:get()
+--   if #cc == 0 then
+--     return
+--   end
+--   local cc_num = tonumber(cc[1])
+--   if not cc_num then
+--     return
+--   end
+--   local columns = vim.opt.columns:get()
+--   local cc_values = {}
+--   for i = 0, 10 do
+--     table.insert(cc_values, cc_num + columns * i)
+--   end
+--   vim.opt.colorcolumn = table.concat(cc_values, ',')
+-- end
+--
+-- -- Create an augroup
+-- local augroup_wrappedcc = vim.api.nvim_create_augroup('wrappedcc', { clear = true })
+--
+-- -- Define the autocommands
+-- vim.api.nvim_create_autocmd({ 'OptionSet' }, {
+--   pattern = 'colorcolumn',
+--   group = augroup_wrappedcc,
+--   callback = function()
+--     local cc = vim.opt.colorcolumn:get()
+--     if #cc > 0 and not cc[1]:find ',' then
+--       wrapped_cc()
+--     end
+--   end,
+-- })
+--
+-- vim.api.nvim_create_autocmd({ 'VimEnter', 'VimResized' }, {
+--   group = augroup_wrappedcc,
+--   callback = function()
+--     local cc = vim.opt.colorcolumn:get()
+--     if #cc > 0 and not cc[1]:find ',' then
+--       wrapped_cc()
+--     end
+--   end,
+-- })
