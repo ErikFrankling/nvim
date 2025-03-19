@@ -51,7 +51,7 @@ vim.opt.list = true
 vim.opt.listchars = { tab = '→ ', trail = '·', nbsp = '␣', space = '⋅' }
 
 -- 80 column line marker
-vim.g.colorcolumn = '80'
+vim.opt.colorcolumn = '80'
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
@@ -63,6 +63,24 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 
 vim.opt.termguicolors = true
+
+-- Wrap lines on word boundaries
+vim.opt.linebreak = true
+
+-- Only indent as far as the next indent level not the next entire tabwidth
+vim.opt.smarttab = true
+
+-- Create an augroup for the autocmd
+local override_tabstop_group = vim.api.nvim_create_augroup('OverrideTabstop', { clear = true })
+
+-- Create an autocmd that sets tabstop to 4 on every buffer entry overriding vim-sleuth
+vim.api.nvim_create_autocmd('BufEnter', {
+  group = override_tabstop_group,
+  pattern = '*',
+  callback = function()
+    vim.opt_local.tabstop = 4
+  end,
+})
 
 --[=[
 
@@ -108,5 +126,3 @@ vim.opt.termguicolors = true
 	The value of 'tabstop' will be ignored if |'vartabstop'| is set to
 	anything other than an empty string.
 --]=]
--- vim.o.softtabstop = 4
--- vim.o.shiftwidth = 4
