@@ -7,20 +7,19 @@ return {
   -- build = function()
   --   vim.fn['mkdp#util#install']()
   -- end,
-
-  -- 'iamcco/markdown-preview.nvim',
-  -- cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
   -- build = 'cd app && yarn install',
-  -- init = function()
-  --   vim.g.mkdp_filetypes = { 'markdown' }
-  -- end,
+  -- cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
+  init = function()
+    vim.g.mkdp_auto_start = 0
+    vim.cmd [[
+    function OpenMarkdownPreview (url)
+      execute "silent ! firefox --new-window " . a:url
+    endfunction
+    let g:mkdp_browserfunc = 'OpenMarkdownPreview'
+  ]]
+    --   vim.g.mkdp_filetypes = { 'markdown' }
+  end,
   -- ft = { 'markdown' },
-
-  -- function OpenMarkdownPreview (url)
-  --    execute "silent ! firefox --new-window " . a:url
-  --  end
-  --  vim.g.mkdp_browserfunc = 'OpenMarkdownPreview'
-  --  end,
 
   -- { 'ellisonleao/glow.nvim', config = true, cmd = 'Glow' },
 }

@@ -1,13 +1,14 @@
 # TODO
 
-- [ ] Markdown
+- [x] Markdown
 - [x] C-s
 - [x] dont clear on yank
 - [x] install in nixos
-- [ ] all lsp
+- [x] all lsp
+- [ ] clangd
 - [ ] formating
-- [ ] rg entier project
-- [ ] copilot and lsp need th find project root so they have all necesary context
+- [x] rg entier project
+- [ ] copilot and lsp need to find project root so they have all necesary context
 - [ ] harpoon
 - [ ] several open files in one session
 - [ ] copilot togle

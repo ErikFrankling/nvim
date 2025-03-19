@@ -10,7 +10,6 @@
 ========         ||   KICKSTART.NVIM   ||   |-----|          ========
 ========         ||                    ||   | === |          ========
 ========         ||                    ||   |-----|          ========
-========         ||:Tutor              ||   |:::::|          ========
 ========         |'-..................-'|   |____o|          ========
 ========         `"")----------------(""`   ___________      ========
 ========        /::::::::::|  |::::::::::\  \ no mouse \     ========
@@ -112,6 +111,7 @@ vim.g.have_nerd_font = nixCats 'have_nerd_font'
 require 'custom.options'
 require 'custom.keymaps'
 require 'custom.autocomd'
+require 'custom.yuckls'
 -- require 'custom.copilot_toggle'
 
 -- NOTE: nixCats: You might want to move the lazy-lock.json file
