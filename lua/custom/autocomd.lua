@@ -11,3 +11,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
+
+vim.api.nvim_create_autocmd('BufEnter', {
+  pattern = '*.tex',
+  command = 'TeXpresso %',
+})
