@@ -12,7 +12,13 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.api.nvim_create_autocmd('BufEnter', {
+vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
   pattern = '*.tex',
-  command = 'TeXpresso %',
+  callback = function()
+    require('lazy').load { plugins = { 'texpresso.vim' } }
+    -- Schedule the command so it runs after the plugin is loaded.
+    vim.schedule(function()
+      vim.cmd 'TeXpresso %'
+    end)
+  end,
 })

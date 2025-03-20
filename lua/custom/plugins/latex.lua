@@ -46,6 +46,7 @@ return {
   },
   {
     'let-def/texpresso.vim',
+    lazy = false,
     setup = function()
       -- vim.g.texpresso_viewer = 'SumatraPDF'
       -- vim.g.texpresso_forward_search = 1
