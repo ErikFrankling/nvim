@@ -46,11 +46,6 @@ return {
   },
   {
     'ErikFrankling/texpresso.vim',
-    -- opts = {
-    --   logger = function(msg)
-    --     print(msg)
-    --   end,
-    -- },
     init = function()
       require('texpresso').logger = function(msg)
         print(msg)
