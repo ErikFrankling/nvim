@@ -24,6 +24,15 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
 
+    texpresso-vim.url = "github:ErikFrankling/texpresso.vim";
+    # texpresso-vim.url = "/home/erikf/projects/personal/texpresso.vim";
+    texpresso-vim.inputs.nixpkgs.follows = "nixpkgs";
+
+    # plugin-texpresso-vim = {
+    #   url = "/home/erikf/projects/personal/texpresso.vim";
+    #   flake = false;
+    # };
+
     # neovim-nightly-overlay = {
     #   url = "github:nix-community/neovim-nightly-overlay";
     # };
@@ -75,6 +84,7 @@
         # use `pkgs.neovimPlugins`, which is a set of our plugins.
         (utils.standardPluginOverlay inputs)
         # add any other flake overlays here.
+        inputs.texpresso-vim.overlays.default
 
         # when other people mess up their overlays by wrapping them with system,
         # you may instead call this function on their overlay.
@@ -208,7 +218,6 @@
             nvim-web-devicons
             plenary-nvim
           ];
-
           custom-copilot = [
             copilot-lua
             copilot-lualine

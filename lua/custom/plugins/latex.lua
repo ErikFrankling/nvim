@@ -45,11 +45,16 @@ return {
     end,
   },
   {
-    'let-def/texpresso.vim',
-    setup = function()
-      -- vim.g.texpresso_viewer = 'SumatraPDF'
-      -- vim.g.texpresso_forward_search = 1
-      -- vim.g.texpresso_open_cmd = 'silent !start SumatraPDF -reuse-instance'
+    'ErikFrankling/texpresso.vim',
+    -- opts = {
+    --   logger = function(msg)
+    --     print(msg)
+    --   end,
+    -- },
+    init = function()
+      require('texpresso').logger = function(msg)
+        print(msg)
+      end
     end,
   },
 }
