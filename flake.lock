@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "lualine-lsp-progress": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1645625191,
+        "narHash": "sha256-xlfjqMXBlcveCPY4FCyIyBj1QHYFifLnDYzQA93OPCM=",
+        "owner": "bercly0b",
+        "repo": "lualine-lsp-progress",
+        "rev": "931e11d2ad4f9a43216e150bd7e8c770a01a5b20",
+        "type": "github"
+      },
+      "original": {
+        "owner": "bercly0b",
+        "repo": "lualine-lsp-progress",
+        "type": "github"
+      }
+    },
     "nixCats": {
       "locked": {
         "lastModified": 1742479173,
@@ -33,63 +49,9 @@
     },
     "root": {
       "inputs": {
+        "lualine-lsp-progress": "lualine-lsp-progress",
         "nixCats": "nixCats",
-        "nixpkgs": "nixpkgs",
-        "texpresso-vim": "texpresso-vim"
-      }
-    },
-    "systems": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
-    "texpresso-vim": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "utils": "utils"
-      },
-      "locked": {
-        "lastModified": 1742533252,
-        "narHash": "sha256-MWzr1oZ7OVdCazAIct0gvopxWscJ6AWKHWOwlNcqDII=",
-        "owner": "ErikFrankling",
-        "repo": "texpresso.vim",
-        "rev": "05865eb589ead634678bdafacef86b36d29faf93",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ErikFrankling",
-        "repo": "texpresso.vim",
-        "type": "github"
-      }
-    },
-    "utils": {
-      "inputs": {
-        "systems": "systems"
-      },
-      "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
+        "nixpkgs": "nixpkgs"
       }
     }
   },

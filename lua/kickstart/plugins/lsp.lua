@@ -189,7 +189,16 @@ return {
         { '<Leader>K', '<plug>(vimtex-doc-package)', desc = 'Vimtex Docs', silent = true },
       },
     }
+
+    -- For a list of available LSPs, see:
+    -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
     servers.clangd = {}
+    servers.clojure_lsp = {
+      filetypes = { 'clojure', 'edn', 'clj' },
+    }
+    servers.hls = {
+      filetypes = { 'haskell', 'lhaskell', 'cabal' },
+    }
     servers.gopls = {}
     servers.pyright = {}
     servers.rust_analyzer = {}

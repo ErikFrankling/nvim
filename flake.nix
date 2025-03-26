@@ -24,9 +24,12 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
 
-    texpresso-vim.url = "github:ErikFrankling/texpresso.vim";
+    lualine-lsp-progress.url = "github:bercly0b/lualine-lsp-progress";
+    lualine-lsp-progress.flake = false;
+
+    # texpresso-vim.url = "github:ErikFrankling/texpresso.vim";
     # texpresso-vim.url = "/home/erikf/projects/personal/texpresso.vim";
-    texpresso-vim.inputs.nixpkgs.follows = "nixpkgs";
+    # texpresso-vim.inputs.nixpkgs.follows = "nixpkgs";
 
     # plugin-texpresso-vim = {
     #   url = "/home/erikf/projects/personal/texpresso.vim";
@@ -84,7 +87,28 @@
         # use `pkgs.neovimPlugins`, which is a set of our plugins.
         (utils.standardPluginOverlay inputs)
         # add any other flake overlays here.
-        inputs.texpresso-vim.overlays.default
+        # inputs.texpresso-vim.overlays.default
+
+        # overlay for nvim-lint made here because it has no flake.nix 
+        # (final: prev: {
+        #   vimPlugins = prev.vimPlugins //
+        #   {
+        #     nvim-lint = prev.vimPlugins.nvim-lint.overrideAttrs (old: {
+        #       version = "1.0.0";
+        #       src = inputs.nvim-lint;
+        #     });
+        #   };
+        # })
+
+        (final: prev: {
+          vimPlugins = prev.vimPlugins //
+          {
+            lualine-lsp-progress = prev.vimPlugins.lualine-lsp-progress.overrideAttrs (old: {
+              version = "1.0.0";
+              src = inputs.lualine-lsp-progress;
+            });
+          };
+        })
 
         # when other people mess up their overlays by wrapping them with system,
         # you may instead call this function on their overlay.
@@ -132,13 +156,13 @@
             fd
             stdenv.cc.cc
             nix-doc
-            stylua
           ];
           kickstart-debug = [
             delve
           ];
           kickstart-lint = [
             markdownlint-cli
+            nodePackages.jsonlint
           ];
           kickstart-lsp = [
             lua-language-server
@@ -149,6 +173,12 @@
             pyright
             texlab
             typescript-language-server
+            haskell-language-server
+            clojure-lsp
+          ];
+          kickstart-autoformat = [
+            stylua
+            cljfmt
           ];
           custom-latex = [
             texlive.combined.scheme-full
@@ -176,7 +206,6 @@
             nvim-lspconfig
             lazydev-nvim
             fidget-nvim
-            conform-nvim
             nvim-cmp
             luasnip
             cmp_luasnip
@@ -185,6 +214,8 @@
             todo-comments-nvim
             mini-nvim
             nvim-surround
+            rainbow-delimiters-nvim
+            nvim-parinfer
             nvim-treesitter.withAllGrammars
             # This is for if you only want some of the grammars
             # (nvim-treesitter.withPlugins (
@@ -206,6 +237,9 @@
           kickstart-lint = [
             nvim-lint
           ];
+          kickstart-autoformat = [
+            conform-nvim
+          ];
           kickstart-autopairs = [
             nvim-autopairs
           ];
@@ -220,11 +254,12 @@
           ];
           custom-copilot = [
             copilot-lua
-            copilot-lualine
           ];
           custom-lualine = [
             lualine-nvim
             nvim-web-devicons
+            copilot-lualine
+            lualine-lsp-progress
           ];
           custom-snacks = [
             snacks-nvim
@@ -326,13 +361,13 @@
             kickstart-debug = true;
             kickstart-lint = true;
             kickstart-indent_line = true;
+            kickstart-lsp = true;
+            kickstart-autoformat = true;
 
             # this kickstart extra didnt require any extra plugins
             # so it doesnt have a category above.
             # but we can still send the info from nix to lua that we want it!
             kickstart-gitsigns = true;
-
-            kickstart-lsp = true;
 
             custom-copilot = true;
             custom-lualine = true;

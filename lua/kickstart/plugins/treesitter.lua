@@ -1,6 +1,39 @@
 return {
   -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
+  dependencies = {
+    {
+      'HiPhish/rainbow-delimiters.nvim',
+      init = function()
+        ---@type rainbow_delimiters.config
+        vim.g.rainbow_delimiters = {
+          -- strategy = {
+          --   [''] = 'rainbow-delimiters.strategy.global',
+          --   vim = 'rainbow-delimiters.strategy.local',
+          -- },
+          -- query = {
+          --   [''] = 'rainbow-delimiters',
+          --   lua = 'rainbow-blocks',
+          --   go = 'rainbow-blocks',
+          -- },
+          -- priority = {
+          --   [''] = 110,
+          --   -- lua = 210,
+          -- },
+          highlight = {
+            'RainbowDelimiterWhite',
+            'RainbowDelimiterRed',
+            'RainbowDelimiterYellow',
+            'RainbowDelimiterBlue',
+            'RainbowDelimiterOrange',
+            'RainbowDelimiterGreen',
+            'RainbowDelimiterViolet',
+            'RainbowDelimiterCyan',
+          },
+        }
+      end,
+    },
+  },
   build = require('nixCatsUtils').lazyAdd ':TSUpdate',
   opts = {
     -- NOTE: nixCats: use lazyAdd to only set these 2 options if nix wasnt involved.
