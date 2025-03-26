@@ -156,6 +156,7 @@
             fd
             stdenv.cc.cc
             nix-doc
+            parinfer-rust
           ];
           kickstart-debug = [
             delve
@@ -215,7 +216,7 @@
             mini-nvim
             nvim-surround
             rainbow-delimiters-nvim
-            nvim-parinfer
+            parinfer-rust
             nvim-treesitter.withAllGrammars
             # This is for if you only want some of the grammars
             # (nvim-treesitter.withPlugins (
