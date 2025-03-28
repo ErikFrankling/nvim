@@ -176,6 +176,8 @@
             typescript-language-server
             haskell-language-server
             clojure-lsp
+            # should be handled by the project's devShell so that it is on the same commit as the compiler
+            # zls
           ];
           kickstart-autoformat = [
             stylua

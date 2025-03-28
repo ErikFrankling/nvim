@@ -27,6 +27,7 @@ return {
     formatters_by_ft = {
       lua = { 'stylua' },
       clojure = { 'cljfmt' },
+      zig = { 'zigfmt' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
       --
