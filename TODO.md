@@ -19,3 +19,4 @@
 - [ ] copilot chat https://github.com/CopilotC-Nvim/CopilotChat.nvim
 - [ ] git integration, git hunk
 - [ ] time tracker https://github.com/wakatime/vim-wakatime
+- [ ] clojure https://www.reddit.com/r/Clojure/comments/kolhpj/clojure_in_neovim/

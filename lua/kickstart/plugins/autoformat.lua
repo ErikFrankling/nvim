@@ -20,12 +20,14 @@ return {
       -- languages here or re-enable it for the disabled ones.
       local disable_filetypes = { c = true, cpp = true }
       return {
-        timeout_ms = 500,
+        timeout_ms = 5000,
         lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
       }
     end,
     formatters_by_ft = {
       lua = { 'stylua' },
+      clojure = { 'cljfmt' },
+      zig = { 'zigfmt' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
       --
