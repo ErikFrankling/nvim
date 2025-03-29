@@ -26,6 +26,8 @@ local function getdata()
     f:close()
   end
 
+  print('geting data ', vim.inspect(data))
+
   return data
 end
 
