@@ -69,6 +69,9 @@ vim.opt.showbreak = '↪ '
 -- Make a line a culumn of characters
 vim.opt.colorcolumn = '80'
 
+-- make nvim read after/ftplugin/*
+vim.opt.filetype = 'on'
+
 -- Only indent as far as the next indent level not the next entire tabwidth
 vim.opt.smarttab = true
 

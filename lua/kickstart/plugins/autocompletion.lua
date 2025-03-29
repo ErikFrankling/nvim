@@ -35,9 +35,12 @@ return {
     -- Adds other completion capabilities.
     --  nvim-cmp does not ship with all sources by default. They are split
     --  into multiple repos for maintenance purposes.
+    -- https://github.com/topics/nvim-cmp
+    -- https://github.com/hrsh7th/nvim-cmp/wiki/List-of-sources
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
     'kdheepak/cmp-latex-symbols',
+    'hrsh7th/cmp-buffer',
   },
   config = function()
     -- See `:help cmp`

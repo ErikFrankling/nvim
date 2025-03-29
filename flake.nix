@@ -177,11 +177,6 @@
             lazydev-nvim
             fidget-nvim
             conform-nvim
-            nvim-cmp
-            luasnip
-            cmp_luasnip
-            cmp-nvim-lsp
-            cmp-path
             todo-comments-nvim
             mini-nvim
             nvim-surround
@@ -218,6 +213,16 @@
             nvim-web-devicons
             plenary-nvim
           ];
+          kickstart-autocompletion = [
+            nvim-cmp
+            luasnip
+            cmp_luasnip
+            cmp-nvim-lsp
+            cmp-path
+            cmp-buffer
+            cmp-latex-symbols
+          ];
+
           custom-copilot = [
             copilot-lua
             copilot-lualine
