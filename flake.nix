@@ -325,7 +325,7 @@
         };
         # populates $LUA_PATH and $LUA_CPATH
         extraLuaPackages = {
-          test = [ (_: [ ]) ];
+          test = [ (ps: with ps; [ cjson ]) ];
         };
       };
 
