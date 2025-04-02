@@ -53,6 +53,25 @@ vim.api.nvim_create_user_command('CopilotToggle', function()
   f:close()
 end, { nargs = 0 })
 
+-- Autocommand that waits until Copilot is loaded to turn it on or off
+vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+  desc = 'CopilotToggle',
+  pattern = '*',
+  callback = function()
+    local data = getdata()
+
+    if data.COPILOT_ON then
+      -- vim.cmd 'Copilot enable'
+      -- vim.bo.copilot_enabled = true
+      print 'Copilot ON'
+    else
+      vim.b.copilot_enabled = false
+      -- vim.cmd 'Copilot disable'
+      print 'Copilot OFF'
+    end
+  end,
+})
+
 -- local cjson = require 'cjson'
 --
 -- local function getdatafilepath()

@@ -337,17 +337,16 @@
       # This entire set is also passed to nixCats for querying within the lua.
 
       # see :help nixCats.flake.outputs.packageDefinitions
-      packageDefinitions = {
+      packageDefinitions = let
         # These are the names of your packages
         # you can include as many as you wish.
-        nvim = { pkgs, ... }: {
+        basePackage = { pkgs, ... }: {
           # they contain a settings set defined above
           # see :help nixCats.flake.outputs.settings
-          settings = {
-            wrapRc = true;
-            # IMPORTANT:
-            # your alias may not conflict with your other packages.
-            aliases = [ "vim" ];
+          settings = rec {
+            # wrapRc = builtins.getEnv "NIXCATS_UNWRAP_RC" != "true";
+            # aliases = [ ( if wrapRc then "nvim" else "nvim-debug" ) ];
+            # unwrappedCfgPath = "/home/erikf/projects/personal/nvim";
             # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
             withNodeJs = true;
           };
@@ -395,7 +394,25 @@
             };
           };
         };
+      in {
+        nvim = { pkgs, ... }@inputs: basePackage {
+          inherit pkgs;
+          inherit inputs;
+        } // {
+          settings.wrapRc = true;
+        };
+        nvim-debug = { pkgs, ... }@inputs: basePackage {
+          inherit pkgs;
+          inherit inputs;
+        } // {
+          # IMPORTANT:
+          # your alias may not conflict with your other packages.
+          aliases = [ "nvim-debug" ];
+          settings.wrapRc = false;
+          settings.unwrappedCfgPath = "/home/erikf/projects/personal/nvim";
+        };
       };
+
       # In this section, the main thing you will need to do is change the default package name
       # to the name of the packageDefinitions entry you wish to use as the default.
       defaultPackageName = "nvim";
@@ -418,7 +435,7 @@
           # and is passed to our categoryDefinitions and packageDefinitions
           pkgs = import nixpkgs { inherit system; };
         in
-        {
+        rec{
           # these outputs will be wrapped with ${system} by utils.eachSystem
 
           # this will make a package out of each of the packageDefinitions defined above
@@ -430,10 +447,10 @@
           devShells = {
             default = pkgs.mkShell {
               name = defaultPackageName;
-              packages = [ defaultPackage ];
+              packages = [ defaultPackage packages.nvim-debug ];
               inputsFrom = [ ];
               shellHook = ''
-        '';
+              '';
             };
           };
 

@@ -27,7 +27,15 @@ return {
         cvs = true,
         ['.'] = true,
       },
+      logger = {
+        file = vim.fn.stdpath 'log' .. '/copilot-lua.log',
+        file_log_level = vim.log.levels.INFO,
+        trace_lsp = 'verbose', -- "off" | "messages" | "verbose"
+        trace_lsp_progress = true,
+        log_lsp_messages = true,
+      },
       should_attach = function(_, _)
+        print 'Checking if Copilot should be attached'
         local data = require('copilot_toggle').getdata()
 
         if data.COPILOT_ON then
