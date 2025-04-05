@@ -151,6 +151,7 @@
           };
         in {
           general = [
+            nodejs
             universal-ctags
             ripgrep
             fd
@@ -321,13 +322,6 @@
         # lists of the functions you would have passed to
         # python.withPackages or lua.withPackages
 
-        # get the path to this python environment
-        # in your lua config via
-        # vim.g.python3_host_prog
-        # or run from nvim terminal via :!<packagename>-python3
-        extraPython3Packages = {
-          test = (_: [ ]);
-        };
         # populates $LUA_PATH and $LUA_CPATH
         extraLuaPackages = {
           test = [ (ps: with ps; [ cjson ]) ];
@@ -348,13 +342,13 @@
         basePackage = { pkgs, ... }: {
           # they contain a settings set defined above
           # see :help nixCats.flake.outputs.settings
-          settings = rec {
+          settings = {
             # wrapRc = builtins.getEnv "NIXCATS_UNWRAP_RC" != "true";
             # aliases = [ ( if wrapRc then "nvim" else "nvim-debug" ) ];
             # unwrappedCfgPath = "/home/erikf/projects/personal/nvim";
             # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
-            withNodeJs = true;
           };
+
           # and a set of categories that you want
           # (and other information to pass to lua)
           categories = {
@@ -405,6 +399,8 @@
           inherit inputs;
         } // {
           settings.wrapRc = true;
+            hosts.python3.enable = true;
+            hosts.node.enable = true;
         };
         nvim-debug = { pkgs, ... }@inputs: basePackage {
           inherit pkgs;
@@ -412,9 +408,11 @@
         } // {
           # IMPORTANT:
           # your alias may not conflict with your other packages.
-          aliases = [ "nvim-debug" ];
+          settings.aliases = [ "nvim-debug" ];
           settings.wrapRc = false;
           settings.unwrappedCfgPath = "/home/erikf/projects/personal/nvim";
+          hosts.python3.enable = true;
+          hosts.node.enable = true;
         };
       };
 
