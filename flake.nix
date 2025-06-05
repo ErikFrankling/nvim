@@ -179,6 +179,7 @@
             clojure-lsp
             # should be handled by the project's devShell so that it is on the same commit as the compiler
             # zls
+            phpactor
           ];
           kickstart-autoformat = [
             stylua
@@ -450,7 +451,8 @@
           devShells = {
             default = pkgs.mkShell {
               name = defaultPackageName;
-              packages = [ defaultPackage packages.nvim-debug ];
+              # packages = [ defaultPackage packages.nvim-debug ];
+              packages = [ packages.nvim-debug ];
               inputsFrom = [ ];
               shellHook = ''
               '';
