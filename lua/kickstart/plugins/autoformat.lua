@@ -30,6 +30,7 @@ return {
       clojure = { 'cljfmt' },
       zig = { 'zigfmt' },
       php = { 'php_cs_fixer' },
+      nix = { 'nixfmt' },
 
       -- Conform can also run multiple formatters sequentially
       python = { 'isort', 'black' },
