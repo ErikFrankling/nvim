@@ -421,8 +421,8 @@
               # your alias may not conflict with your other packages.
               # settings.aliases = [ "nvim-debug-2" ];
               settings.wrapRc = false;
-              # settings.unwrappedCfgPath = "$HOME/projects/personal/nvim";
-              settings.unwrappedCfgPath = "/home/efeirar/projects/personal/nvim";
+              settings.unwrappedCfgPath = "/home/erikf/projects/personal/nvim";
+              # settings.unwrappedCfgPath = "/home/efeirar/projects/personal/nvim";
               hosts.python3.enable = true;
               hosts.node.enable = true;
             };
