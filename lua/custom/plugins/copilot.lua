@@ -28,13 +28,13 @@ return {
         cvs = true,
         ['.'] = true,
       },
-      logger = {
-        file = vim.fn.stdpath 'log' .. '/copilot-lua.log',
-        file_log_level = vim.log.levels.INFO,
-        trace_lsp = 'verbose', -- "off" | "messages" | "verbose"
-        trace_lsp_progress = true,
-        log_lsp_messages = true,
-      },
+      -- logger = {
+      --   file = vim.fn.stdpath 'log' .. '/copilot-lua.log',
+      --   file_log_level = vim.log.levels.INFO,
+      --   trace_lsp = 'verbose', -- "off" | "messages" | "verbose"
+      --   trace_lsp_progress = true,
+      --   log_lsp_messages = true,
+      -- },
     },
   },
 }
