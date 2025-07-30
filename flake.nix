@@ -197,6 +197,7 @@
                 # should be handled by the project's devShell so that it is on the same commit as the compiler
                 # zls
                 phpactor
+                clang-tools
               ];
               kickstart-autoformat = [
                 stylua
@@ -421,8 +422,8 @@
               # your alias may not conflict with your other packages.
               # settings.aliases = [ "nvim-debug-2" ];
               settings.wrapRc = false;
-              settings.unwrappedCfgPath = "/home/erikf/projects/personal/nvim";
-              # settings.unwrappedCfgPath = "/home/efeirar/projects/personal/nvim";
+              # settings.unwrappedCfgPath = "/home/erikf/projects/personal/nvim";
+              settings.unwrappedCfgPath = "/home/efeirar/projects/personal/nvim";
               hosts.python3.enable = true;
               hosts.node.enable = true;
             };
