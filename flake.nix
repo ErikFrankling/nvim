@@ -197,6 +197,7 @@
                 # should be handled by the project's devShell so that it is on the same commit as the compiler
                 # zls
                 phpactor
+                clang-tools
               ];
               kickstart-autoformat = [
                 stylua
@@ -205,12 +206,14 @@
                 black
                 isort
               ];
+
               custom-latex = [
                 texlive.combined.scheme-small
                 texpresso
                 zathura
               ];
               custom-yuckls = [ yuckls ];
+              custom-none-ls = [ nodePackages.cspell ];
             };
 
           # This is for plugins that will load at startup without using packadd:
@@ -270,6 +273,7 @@
               cmp-path
               cmp-buffer
               cmp-latex-symbols
+              cmp-spell
             ];
 
             custom-copilot = [ copilot-lua ];
@@ -292,6 +296,10 @@
             ];
             custom-minuet = [
               minuet-ai-nvim
+            ];
+            custom-none-ls = [
+              none-ls-nvim
+              cspell-nvim
             ];
           };
 
@@ -386,6 +394,7 @@
                 custom-latex = true;
                 custom-yuckls = true;
                 custom-minuet = true;
+                custom-none-ls = true;
 
                 # we can pass whatever we want actually.
                 have_nerd_font = true;
