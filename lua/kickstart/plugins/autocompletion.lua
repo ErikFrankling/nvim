@@ -41,6 +41,7 @@ return {
     'hrsh7th/cmp-path',
     'kdheepak/cmp-latex-symbols',
     'hrsh7th/cmp-buffer',
+    'f3fora/cmp-spell',
   },
   config = function()
     -- See `:help cmp`
@@ -128,9 +129,43 @@ return {
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
       },
       sources = {
-        { name = 'nvim_lsp' },
+        { name = 'nvim_lsp', priority = 20 },
+        {
+          name = 'buffer',
+          priority = 9,
+          -- use all opened buffers but not larger than 1Mb
+          -- From: https://www.reddit.com/r/neovim/comments/16o22w0/comment/k1j8g62/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+          option = {
+            indexing_interval = 1000,
+            max_indexed_line_length = 512,
+            get_bufnrs = function()
+              local bufs = vim.api.nvim_list_bufs()
+
+              local result = {}
+              for _, v in ipairs(bufs) do
+                local byte_size = vim.api.nvim_buf_get_offset(v, vim.api.nvim_buf_line_count(v))
+                if byte_size < 1024 * 1024 then
+                  result[#result + 1] = v
+                end
+              end
+
+              return result
+            end,
+          },
+        },
+        { name = 'latex-latex-symbols' },
         { name = 'luasnip' },
         { name = 'path' },
+        {
+          name = 'spell',
+          option = {
+            keep_all_entries = false,
+            enable_in_context = function()
+              return true
+            end,
+            preselect_correct_word = true,
+          },
+        },
       },
     }
   end,

@@ -86,3 +86,6 @@ vim.api.nvim_create_autocmd('BufEnter', {
     vim.opt_local.tabstop = 4
   end,
 })
+
+vim.opt.spell = true
+vim.opt.spelllang = { 'en_us' }

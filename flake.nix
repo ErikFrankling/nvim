@@ -206,12 +206,14 @@
                 black
                 isort
               ];
+
               custom-latex = [
                 texlive.combined.scheme-small
                 texpresso
                 zathura
               ];
               custom-yuckls = [ yuckls ];
+              custom-none-ls = [ nodePackages.cspell ];
             };
 
           # This is for plugins that will load at startup without using packadd:
@@ -271,6 +273,7 @@
               cmp-path
               cmp-buffer
               cmp-latex-symbols
+              cmp-spell
             ];
 
             custom-copilot = [ copilot-lua ];
@@ -289,6 +292,10 @@
             custom-latex = [
               vimtex
               texpresso-vim
+            ];
+            custom-none-ls = [
+              none-ls-nvim
+              cspell-nvim
             ];
           };
 
@@ -382,6 +389,7 @@
                 custom-snacks = false;
                 custom-latex = true;
                 custom-yuckls = true;
+                custom-none-ls = true;
 
                 # we can pass whatever we want actually.
                 have_nerd_font = true;
@@ -422,8 +430,8 @@
               # your alias may not conflict with your other packages.
               # settings.aliases = [ "nvim-debug-2" ];
               settings.wrapRc = false;
-              # settings.unwrappedCfgPath = "/home/erikf/projects/personal/nvim";
-              settings.unwrappedCfgPath = "/home/efeirar/projects/personal/nvim";
+              settings.unwrappedCfgPath = "/home/erikf/projects/personal/nvim";
+              # settings.unwrappedCfgPath = "/home/efeirar/projects/personal/nvim";
               hosts.python3.enable = true;
               hosts.node.enable = true;
             };
