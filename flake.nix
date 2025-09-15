@@ -192,12 +192,13 @@
                 pyright
                 texlab
                 typescript-language-server
-                haskell-language-server
+                # haskell-language-server
                 clojure-lsp
                 # should be handled by the project's devShell so that it is on the same commit as the compiler
                 # zls
                 phpactor
                 clang-tools
+                harper
               ];
               kickstart-autoformat = [
                 stylua
@@ -389,7 +390,8 @@
                 custom-snacks = false;
                 custom-latex = true;
                 custom-yuckls = true;
-                custom-none-ls = true;
+                custom-none-ls = false;
+                custom-harpoon = true;
 
                 # we can pass whatever we want actually.
                 have_nerd_font = true;

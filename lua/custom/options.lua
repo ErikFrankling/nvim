@@ -87,5 +87,20 @@ vim.api.nvim_create_autocmd('BufEnter', {
   end,
 })
 
+-- needed for spell cmp source
 vim.opt.spell = true
 vim.opt.spelllang = { 'en_us' }
+
+vim.diagnostic.config {
+  -- Lines for each diagnostic message
+  -- virtual_lines = true,
+
+  -- Alternatively, customize specific options
+  -- virtual_lines = {
+  --   -- Only show virtual line diagnostics for the current cursor line
+  --   current_line = true,
+  -- },
+
+  virtual_text = true,
+  -- virtual_text = { current_line = true }
+}
