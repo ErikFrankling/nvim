@@ -283,6 +283,7 @@
               nvim-web-devicons
               copilot-lualine
               lualine-lsp-progress
+              minuet-ai-nvim
             ];
             custom-snacks = [ snacks-nvim ];
             custom-markdown = [ markdown-preview-nvim ];
@@ -293,6 +294,9 @@
             custom-latex = [
               vimtex
               texpresso-vim
+            ];
+            custom-minuet = [
+              minuet-ai-nvim
             ];
             custom-none-ls = [
               none-ls-nvim
@@ -392,6 +396,7 @@
                 custom-yuckls = true;
                 custom-none-ls = false;
                 custom-harpoon = true;
+                custom-minuet = true;
 
                 # we can pass whatever we want actually.
                 have_nerd_font = true;

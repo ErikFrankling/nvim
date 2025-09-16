@@ -67,6 +67,9 @@ return {
         --  This will expand snippets if the LSP sent a snippet.
         ['<C-y>'] = cmp.mapping.confirm { select = true },
 
+        -- force llm completion
+        ['<A-y>'] = require('minuet').make_cmp_map(),
+
         -- Scroll the documentation window
         ['<A-j>'] = cmp.mapping.scroll_docs(-4),
         ['<A-k>'] = cmp.mapping.scroll_docs(4),
