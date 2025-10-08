@@ -196,9 +196,9 @@ return {
     servers.clojure_lsp = {
       filetypes = { 'clojure', 'edn', 'clj' },
     }
-    servers.hls = {
-      filetypes = { 'haskell', 'lhaskell', 'cabal' },
-    }
+    -- servers.hls = {
+    --   filetypes = { 'haskell', 'lhaskell', 'cabal' },
+    -- }
     servers.gopls = {}
     servers.pyright = {}
     servers.rust_analyzer = {}
@@ -206,6 +206,7 @@ return {
       filetypes = { 'zig' },
     }
     servers.phpactor = {}
+    servers.harper_ls = {}
 
     -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
     --
