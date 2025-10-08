@@ -205,6 +205,8 @@
                 nixfmt-rfc-style
                 black
                 isort
+                rustfmt
+                clang-tools
               ];
 
               custom-latex = [

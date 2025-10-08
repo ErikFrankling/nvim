@@ -31,6 +31,9 @@ return {
       zig = { 'zigfmt' },
       php = { 'php_cs_fixer' },
       nix = { 'nixfmt' },
+      c = { 'clang_format' },
+      cpp = { 'clang_format' },
+      rust = { 'rustfmt' },
 
       -- Conform can also run multiple formatters sequentially
       python = { 'isort', 'black' },
