@@ -180,10 +180,13 @@
             # should be handled by the project's devShell so that it is on the same commit as the compiler
             # zls
             phpactor
+            vscode-langservers-extracted
           ];
           kickstart-autoformat = [
             stylua
             cljfmt
+            pretty-php
+            prettierd
           ];
           custom-latex = [
             texlive.combined.scheme-full

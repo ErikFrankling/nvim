@@ -13,7 +13,7 @@ return {
     },
   },
   opts = {
-    notify_on_error = false,
+    notify_on_error = true,
     format_on_save = function(bufnr)
       -- Disable "format_on_save lsp_fallback" for languages that don't
       -- have a well standardized coding style. You can add additional
@@ -29,14 +29,24 @@ return {
       lua = { 'stylua' },
       clojure = { 'cljfmt' },
       zig = { 'zigfmt' },
-      php = { 'php_cs_fixer' },
+      php = { 'pretty-php' },
+      html = { 'prettierd' },
+      javascript = { 'prettierd' },
+      typescript = { 'prettierd' },
+      typescriptreact = { 'prettierd' },
+      css = { 'prettierd' },
+      scss = { 'prettierd' },
+      json = { 'prettierd' },
+      jsonc = { 'prettierd' },
+      markdown = { 'prettierd' },
+      yaml = { 'prettierd' },
 
       -- Conform can also run multiple formatters sequentially
-      python = { 'isort', 'black' },
+      -- python = { 'isort', 'black' },
       --
       -- You can use a sub-list to tell conform to run *until* a formatter
       -- is found.
-      javascript = { { 'prettierd', 'prettier' } },
+      -- javascript = { { 'prettierd', 'prettier' } },
     },
   },
 }
