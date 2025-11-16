@@ -75,17 +75,17 @@ vim.opt.filetype = 'on'
 -- Only indent as far as the next indent level not the next entire tabwidth
 vim.opt.smarttab = true
 
--- Create an augroup for the autocmd
-local override_tabstop_group = vim.api.nvim_create_augroup('OverrideTabstop', { clear = true })
-
--- Create an autocmd that sets tabstop to 4 on every buffer entry overriding vim-sleuth
-vim.api.nvim_create_autocmd('BufEnter', {
-  group = override_tabstop_group,
-  pattern = '*',
-  callback = function()
-    vim.opt_local.tabstop = 4
-  end,
-})
+-- -- Create an augroup for the autocmd
+-- local override_tabstop_group = vim.api.nvim_create_augroup('OverrideTabstop', { clear = true })
+--
+-- -- Create an autocmd that sets tabstop to 4 on every buffer entry overriding vim-sleuth
+-- vim.api.nvim_create_autocmd('BufEnter', {
+--   group = override_tabstop_group,
+--   pattern = '*',
+--   callback = function()
+--     vim.opt_local.tabstop = 4
+--   end,
+-- })
 
 -- needed for spell cmp source
 vim.opt.spell = true
