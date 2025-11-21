@@ -199,6 +199,7 @@
                 clang-tools
                 harper
                 vscode-langservers-extracted
+                tinymist
               ];
               kickstart-autoformat = [
                 stylua
