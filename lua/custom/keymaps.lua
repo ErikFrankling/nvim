@@ -36,3 +36,11 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- Remap j and k to move by visual lines when no count is given.
 vim.keymap.set('n', 'j', "(v:count == 0 ? 'gj' : 'j')", { expr = true, silent = true })
 vim.keymap.set('n', 'k', "(v:count == 0 ? 'gk' : 'k')", { expr = true, silent = true })
+
+vim.keymap.set('n', '<leader>d', function()
+  if vim.diagnostic.config().virtual_lines then
+    vim.diagnostic.config { virtual_lines = false }
+  else
+    vim.diagnostic.config { virtual_lines = { current_line = true } }
+  end
+end, {})

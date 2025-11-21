@@ -29,7 +29,7 @@ return {
       lua = { 'stylua' },
       clojure = { 'cljfmt' },
       zig = { 'zigfmt' },
-      php = { 'pretty-php' },
+      -- php = { 'pretty-php' },
       html = { 'prettierd' },
       javascript = { 'prettierd' },
       typescript = { 'prettierd' },
@@ -40,6 +40,11 @@ return {
       jsonc = { 'prettierd' },
       markdown = { 'prettierd' },
       yaml = { 'prettierd' },
+      php = { 'php_cs_fixer' },
+      nix = { 'nixfmt' },
+      c = { 'clang_format' },
+      cpp = { 'clang_format' },
+      rust = { 'rustfmt' },
 
       -- Conform can also run multiple formatters sequentially
       -- python = { 'isort', 'black' },
