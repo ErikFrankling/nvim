@@ -211,6 +211,7 @@
                 clang-tools
                 pretty-php
                 prettierd
+                prettypst
               ];
 
               custom-latex = [
