@@ -181,7 +181,6 @@
               kickstart-debug = [ delve ];
               kickstart-lint = [
                 markdownlint-cli
-                nodePackages.jsonlint
               ];
               kickstart-lsp = [
                 lua-language-server
