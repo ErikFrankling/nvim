@@ -236,7 +236,15 @@ return {
     servers.phpactor = {}
     servers.html = {}
     servers.harper_ls = {}
-    servers.tinymist = {}
+    servers.tinymist = {
+      settings = {
+        tinymist = {
+          preview = {
+            enabled = false, -- Disable tinymist's own preview
+          },
+        },
+      },
+    }
 
     -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
     --

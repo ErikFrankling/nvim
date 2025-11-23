@@ -221,6 +221,12 @@
               ];
               custom-yuckls = [ yuckls ];
               custom-none-ls = [ nodePackages.cspell ];
+              custom-typst = [
+                typst
+                qutebrowser
+                websocat
+                tinymist
+              ];
             };
 
           # This is for plugins that will load at startup without using packadd:
@@ -307,6 +313,9 @@
             custom-none-ls = [
               none-ls-nvim
               cspell-nvim
+            ];
+            custom-typst = [
+              typst-preview-nvim
             ];
           };
 
@@ -403,6 +412,7 @@
                 custom-none-ls = false;
                 custom-harpoon = true;
                 custom-minuet = true;
+                custom-typst = true;
 
                 # we can pass whatever we want actually.
                 have_nerd_font = true;
