@@ -287,6 +287,7 @@
               cmp-buffer
               cmp-latex-symbols
               cmp-spell
+              # cmp-look
             ];
 
             custom-copilot = [ copilot-lua ];

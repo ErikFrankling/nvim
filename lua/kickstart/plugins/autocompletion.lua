@@ -132,18 +132,20 @@ return {
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
       },
       sources = {
-        { name = 'nvim_lsp', priority = 20 },
+        { name = 'nvim_lsp', priority = 100, group_index = 1 },
+        { name = 'luasnip', priority = 90, group_index = 1 },
+        { name = 'latex-latex-symbols', group_index = 1 },
+        { name = 'path', priority = 80, group_index = 1 },
         {
           name = 'buffer',
-          priority = 9,
-          -- use all opened buffers but not larger than 1Mb
-          -- From: https://www.reddit.com/r/neovim/comments/16o22w0/comment/k1j8g62/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+          priority = 1,
+          group_index = 2,
+          keyword_length = 2,
           option = {
             indexing_interval = 1000,
             max_indexed_line_length = 512,
             get_bufnrs = function()
               local bufs = vim.api.nvim_list_bufs()
-
               local result = {}
               for _, v in ipairs(bufs) do
                 local byte_size = vim.api.nvim_buf_get_offset(v, vim.api.nvim_buf_line_count(v))
@@ -151,22 +153,29 @@ return {
                   result[#result + 1] = v
                 end
               end
-
               return result
             end,
           },
         },
-        { name = 'latex-latex-symbols' },
-        { name = 'luasnip' },
-        { name = 'path' },
+        -- {
+        --   name = 'look',
+        --   priority = 1,
+        --   group_index = 2,
+        --   keyword_length = 2,
+        --   option = {
+        --     convert_case = true,
+        --     loud = true,
+        --     --dict = '/usr/share/dict/words'
+        --   },
+        -- },
         {
           name = 'spell',
+          priority = 1,
+          group_index = 2,
+          keyword_length = 2,
           option = {
             keep_all_entries = false,
-            enable_in_context = function()
-              return true
-            end,
-            preselect_correct_word = true,
+            preselect_correct_word = false,
           },
         },
       },

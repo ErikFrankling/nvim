@@ -4,9 +4,9 @@ return {
   ft = 'typst',
   version = '1.*',
   opts = {
-    open_cmd = 'qutebrowser %s',
+    open_cmd = 'qutebrowser --target window %s',
     debug = true,
-    port = 8765, -- Use a fixed port
+    -- port = 8765, -- Use a fixed port
     -- point to binaries if you manage them via Mason or system PATH
     dependencies_bin = { tinymist = 'tinymist', websocat = 'websocat' },
     follow_cursor = true,
