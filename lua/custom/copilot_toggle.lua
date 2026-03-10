@@ -55,19 +55,32 @@ vim.api.nvim_create_user_command('CopilotToggle', function()
   f:close()
 end, { nargs = 0 })
 
-vim.api.nvim_create_autocmd('BufEnter', {
+local applied = false
+
+vim.api.nvim_create_autocmd('VimEnter', {
   pattern = '*',
+  once = true,
   callback = function()
-    local copilot = require 'copilot.client'
-    copilot.use_client(function(client)
-      local data = getdata()
-      if data.COPILOT_ON then
-        vim.cmd 'Copilot enable'
-        -- print 'Autocommand: Copilot ON'
-      else
-        vim.cmd 'Copilot disable'
-        -- print 'Autocommand: Copilot OFF'
+    vim.defer_fn(function()
+      if applied then
+        return
       end
-    end)
+      applied = true
+
+      local copilot_exists = pcall(require, 'copilot')
+      if not copilot_exists then
+        return
+      end
+
+      local copilot = require 'copilot.client'
+      copilot.use_client(function(client)
+        local data = getdata()
+        if data.COPILOT_ON then
+          vim.cmd 'Copilot enable'
+        else
+          vim.cmd 'Copilot disable'
+        end
+      end)
+    end, 500)
   end,
 })
