@@ -204,7 +204,7 @@
               kickstart-autoformat = [
                 stylua
                 cljfmt
-                nixfmt-rfc-style
+                nixfmt
                 black
                 isort
                 rustfmt
