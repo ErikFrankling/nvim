@@ -1,6 +1,8 @@
 return {
   {
     'nvimtools/none-ls.nvim',
+    -- NOTE: nixCats: only load if category is enabled
+    enabled = require('nixCatsUtils').enableForCategory 'custom-none-ls',
     event = 'VeryLazy',
     dependencies = { 'davidmh/cspell.nvim' },
     opts = function(_, opts)

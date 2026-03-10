@@ -496,9 +496,7 @@
         devShells = {
           default = pkgs.mkShell {
             name = defaultPackageName;
-            # packages = [ defaultPackage packages.nvim-debug ];
             packages = [ packages.nvim-debug ];
-            inputsFrom = [ ];
             shellHook = "";
           };
         };
