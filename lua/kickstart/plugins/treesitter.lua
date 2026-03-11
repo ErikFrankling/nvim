@@ -31,7 +31,7 @@ return {
 
     -- Enable treesitter highlighting and indentation per filetype
     local disabled_hl = { latex = true, tex = true }
-    local disabled_indent = { ruby = true }
+    local disabled_indent = { ruby = true, cpp = true, c = true }
 
     vim.api.nvim_create_autocmd('FileType', {
       group = vim.api.nvim_create_augroup('treesitter-setup', { clear = true }),
