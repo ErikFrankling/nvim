@@ -179,6 +179,7 @@
                 parinfer-rust
               ];
               kickstart-debug = [ delve ];
+              kickstart-autocompletion = [ scowl ];  # For cmp-dictionary (provides /usr/share/dict/words)
               kickstart-lint = [
                 markdownlint-cli
               ];
@@ -188,6 +189,8 @@
                 gopls
                 go
                 rust-analyzer
+                cargo
+                rustc
                 pyright
                 texlab
                 typescript-language-server
@@ -286,7 +289,8 @@
               cmp-path
               cmp-buffer
               cmp-latex-symbols
-              cmp-spell
+              cmp-dictionary
+              # cmp-spell  # Disabled: returns malformed multi-word suggestions
               # cmp-look
             ];
 
@@ -342,6 +346,10 @@
             test = {
               CATTESTVAR = "It worked!";
             };
+            kickstart-autocompletion = {
+              # Set path to scowl dictionary for cmp-dictionary
+              NVIM_CMP_DICTIONARY_PATH = "${pkgs.scowl}/share/dict/wamerican.50";
+            };
           };
 
           # If you know what these are, you can provide custom ones by category here.
@@ -349,6 +357,7 @@
           # https://github.com/NixOS/nixpkgs/blob/master/pkgs/build-support/setup-hooks/make-wrapper.sh
           extraWrapperArgs = {
             test = [ ''--set CATTESTVAR2 "It worked again!"'' ];
+            kickstart-autocompletion = [ ''--set NVIM_CMP_DICTIONARY_PATH "${pkgs.scowl}/share/dict/wamerican.80"'' ];
           };
 
           # lists of the functions you would have passed to
@@ -391,6 +400,7 @@
                 test = true;
 
                 kickstart-autopairs = true;
+                kickstart-autocompletion = true;
                 kickstart-neo-tree = true;
                 kickstart-debug = true;
                 kickstart-lint = true;

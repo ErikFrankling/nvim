@@ -161,6 +161,9 @@ return {
           map('<leader>th', function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
           end, '[T]oggle Inlay [H]ints')
+          
+          -- Enable inlay hints by default
+          vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
         end
       end,
     })
@@ -229,7 +232,44 @@ return {
     -- }
     servers.gopls = {}
     servers.pyright = {}
-    servers.rust_analyzer = {}
+    servers.rust_analyzer = {
+      settings = {
+        ['rust-analyzer'] = {
+          inlayHints = {
+            bindingModeHints = {
+              enable = false,
+            },
+            chainingHints = {
+              enable = true,
+            },
+            closingBraceHints = {
+              enable = true,
+              minLines = 25,
+            },
+            closureReturnTypeHints = {
+              enable = 'never',
+            },
+            lifetimeElisionHints = {
+              enable = 'never',
+              useParameterNames = false,
+            },
+            maxLength = 25,
+            parameterHints = {
+              enable = true,
+            },
+            reborrowHints = {
+              enable = 'never',
+            },
+            renderColons = true,
+            typeHints = {
+              enable = true,
+              hideClosureInitialization = false,
+              hideNamedConstructor = false,
+            },
+          },
+        },
+      },
+    }
     servers.zls = {
       filetypes = { 'zig' },
     }

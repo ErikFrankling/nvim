@@ -1,6 +1,9 @@
 return {
   {
     'milanglacier/minuet-ai.nvim',
+    dependencies = {
+      'hrsh7th/nvim-cmp',
+    },
     config = function()
       require('minuet').setup {
         virtualtext = {

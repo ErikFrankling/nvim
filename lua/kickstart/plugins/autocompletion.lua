@@ -41,7 +41,7 @@ return {
     'hrsh7th/cmp-path',
     'kdheepak/cmp-latex-symbols',
     'hrsh7th/cmp-buffer',
-    'f3fora/cmp-spell',
+    'uga-rosa/cmp-dictionary',
   },
   config = function()
     -- See `:help cmp`
@@ -157,28 +157,27 @@ return {
             end,
           },
         },
-        -- {
-        --   name = 'look',
-        --   priority = 1,
-        --   group_index = 2,
-        --   keyword_length = 2,
-        --   option = {
-        --     convert_case = true,
-        --     loud = true,
-        --     --dict = '/usr/share/dict/words'
-        --   },
-        -- },
+        -- cmp-dictionary: Uses system dictionary files for clean word suggestions
+        -- Unlike cmp-spell which had a bug returning multi-word suggestions like "Mi spell"
+        -- NIXOS NOTE: For the proper NixOS-native approach, enable the wordlist module in your system config:
+        --   environment.wordlist.lists.WORDLIST = [ "${pkgs.scowl}/share/dict/wamerican.50" ];
+        -- Then change dict_path below to os.getenv('WORDLIST') instead of NVIM_CMP_DICTIONARY_PATH
         {
-          name = 'spell',
+          name = 'dictionary',
           priority = 1,
           group_index = 2,
           keyword_length = 2,
-          option = {
-            keep_all_entries = false,
-            preselect_correct_word = false,
-          },
         },
       },
+    }
+
+    -- Setup cmp-dictionary with system dictionary path
+    -- Uses scowl dictionary which provides clean word lists (no multi-word entries like cmp-spell)
+    local dict_path = os.getenv('NVIM_CMP_DICTIONARY_PATH') or '/usr/share/dict/words'
+    require('cmp_dictionary').setup {
+      paths = { dict_path },
+      exact_length = 2,
+      first_case_insensitive = true,
     }
   end,
 }

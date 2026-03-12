@@ -21,7 +21,10 @@ return {
     },
   },
   config = function()
-    local ts = require('nvim-treesitter')
+    local ts = require 'nvim-treesitter'
+
+    -- Initialize nvim-treesitter (required for main branch)
+    ts.setup()
 
     -- When not using nix, install parsers explicitly
     -- (nix provides all grammars via nvim-treesitter.withAllGrammars)

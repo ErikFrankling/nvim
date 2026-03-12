@@ -8,6 +8,12 @@ This is a nixCats-based Neovim configuration. It uses Nix to manage dependencies
 
 Neovim is a tui so errors are not just printed to the terminal you might have to look at the healthcheck or messages buffers in neovim to understand issues and verfiy things work so not just running a new config is enough to understand if everything wroked or to find out why its not working.
 
+use the internet or rethink your aproach you should never need to access nix sotre files that is off limits use the internet when you need a new aprouch dont hallucinate new shit you are very bad at neovim and nix so use hte internet
+
+you are not alloowed to realy on system config this flake has to be slef contained
+
+you always have to check :messages and the healthcheck before you know what issue you are dealing with and also to verify your solution
+
 ## Development Workflow
 
 ### Commands
@@ -23,6 +29,20 @@ nvim-debug
 # Useful when testing downloading new dependencies
 nix run .
 ```
+
+### Temp stuff
+
+You might need to make temporary test files to see how neovim reacts when editing diffrent file types or maybe you need scripts or temporary extra lua config for testing then you do.
+
+```shell
+mkdir -p tmp
+```
+
+and put everything in `./tmp` dir that you then delete at end of seeesion so no extra shit is left before i make a commit.
+
+also i general make sure to make everything you have worked on clean and neet when you are done.
+
+DONT USE `/tmp/` use instead a local `./tmp/`
 
 ### Key Points
 
