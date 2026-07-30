@@ -52,6 +52,26 @@ local function system_palette()
   return palette
 end
 
+--- Whether a scheme is a light one, worked out from base00 -- which in base16
+--- is by definition the default background.
+---
+--- Not from the `variant:` field in the file, which looks like it says exactly
+--- this but does not: the shell writes that key as the literal string "dark"
+--- for every scheme it publishes, light ones included, so `Gruvbox Light` also
+--- arrives as `variant: "dark"`. base00 is the thing that is actually per
+--- scheme. If the shell is ever fixed to publish the real variant this can read
+--- it instead, but the luminance holds either way -- base16 backgrounds sit at
+--- the ends of the range, nowhere near the middle, so the threshold is not
+--- delicate.
+local function is_light(hex)
+  local r, g, b = hex:match '^#(%x%x)(%x%x)(%x%x)$'
+  if not r then
+    return false
+  end
+  local luma = (0.299 * tonumber(r, 16) + 0.587 * tonumber(g, 16) + 0.114 * tonumber(b, 16)) / 255
+  return luma > 0.5
+end
+
 --- base16 slot -> tokyonight palette entry. Only the raw palette is mapped;
 --- tokyonight derives the statusline, floats, visual selection, diffs and
 --- `:terminal` colours from these itself, so those follow along too.
@@ -113,36 +133,79 @@ return {
     config = function()
       -- tokyonight looks its style up in this table on every `:colorscheme` and
       -- calls it if it finds a function there, so the palette file is re-read on
-      -- every reload. `colors.styles` is an extension point rather than a
-      -- documented API, so nothing here assumes it is there: if a future
-      -- tokyonight drops it the block is skipped and the shipped night palette
-      -- loads untouched, and the same holds if the palette file is missing or
+      -- every reload. Every style is hooked rather than `night` alone, because
+      -- tokyonight picks the style from `&background` -- its `light_style`,
+      -- "day", whenever that is light -- so hooking one style only would leave a
+      -- light scheme rendering as stock tokyonight-day with the shell's palette
+      -- ignored entirely.
+      --
+      -- `colors.styles` is an extension point rather than a documented API, so
+      -- nothing here assumes it is there: if a future tokyonight drops it, or
+      -- renames a style, that style is skipped and the shipped palette loads
+      -- untouched. The same holds if the palette file is missing or
       -- half-written, or if the mapping trips over a palette that has moved on.
+      -- The names are listed rather than iterated because `colors.styles` is an
+      -- empty table behind an `__index` that loads each style on demand, so
+      -- there is nothing for `pairs` to walk.
       local ok, colors = pcall(require, 'tokyonight.colors')
-      local night = ok and type(colors) == 'table' and type(colors.styles) == 'table' and colors.styles.night or nil
-      if night ~= nil then
-        colors.styles.night = function(opts)
-          local base = type(night) == 'function' and night(opts) or vim.deepcopy(night)
-          local p = system_palette()
-          if not p then
-            return base
+      if ok and type(colors) == 'table' and type(colors.styles) == 'table' then
+        for _, style in ipairs { 'storm', 'night', 'moon', 'day' } do
+          local got, shipped = pcall(function()
+            return colors.styles[style]
+          end)
+          if got and shipped ~= nil then
+            colors.styles[style] = function(opts)
+              local base = type(shipped) == 'function' and shipped(opts) or vim.deepcopy(shipped)
+              local p = system_palette()
+              if not p then
+                return base
+              end
+              local mapped, overrides = pcall(as_tokyonight, p)
+              if not mapped then
+                return base
+              end
+              return vim.tbl_deep_extend('force', base, overrides)
+            end
           end
-          local mapped, overrides = pcall(as_tokyonight, p)
-          if not mapped then
-            return base
-          end
-          return vim.tbl_deep_extend('force', base, overrides)
         end
+      end
+
+      --- The scheme to load for the palette currently on disk, and the
+      --- `&background` that belongs with it, or no opinion at all when the
+      --- shell never ran here or the current scheme is not tokyonight's.
+      ---
+      --- `&background` has to be decided here rather than left to whatever the
+      --- terminal answered at startup: tokyonight compares it against the
+      --- style's own and, when the two disagree on a reload of the scheme
+      --- already loaded, swaps the style out from under you instead. A light
+      --- palette has only one home, `day`; a dark one keeps whichever dark
+      --- style is loaded, so a deliberate `storm` or `moon` survives.
+      local function target(name)
+        local p = system_palette()
+        if not p or not name or not name:match '^tokyonight%-' then
+          return name, nil
+        end
+        if is_light(p.base00) then
+          return 'tokyonight-day', 'light'
+        end
+        return name == 'tokyonight-day' and 'tokyonight-night' or name, 'dark'
+      end
+
+      local function apply(name)
+        local scheme, background = target(name)
+        if background then
+          vim.o.background = background
+        end
+        pcall(vim.cmd.colorscheme, scheme)
+        -- You can configure highlights by doing something like:
+        pcall(vim.cmd.hi, 'Comment gui=none')
       end
 
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
       -- vim.cmd.colorscheme 'onedark-warmer'
-      vim.cmd.colorscheme 'tokyonight-night'
-
-      -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=none'
+      apply 'tokyonight-night'
 
       -- Follow the shell live. It rewrites the file in place, so the inode
       -- survives and a watch on the path itself keeps working. The timer is
@@ -153,8 +216,7 @@ return {
       if watcher and timer and vim.fn.filereadable(base16_file) == 1 then
         local reload = vim.schedule_wrap(function()
           if vim.g.colors_name then
-            pcall(vim.cmd.colorscheme, vim.g.colors_name)
-            pcall(vim.cmd.hi, 'Comment gui=none')
+            apply(vim.g.colors_name)
           end
         end)
         watcher:start(base16_file, {}, function()
