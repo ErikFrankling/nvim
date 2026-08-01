@@ -4,11 +4,11 @@
 vim.keymap.set({ 'n', 'v', 'i' }, '<C-s>', '<cmd>w<CR>', { desc = 'Save the current buffer' })
 
 -- Don't override the clipboard when pasting
-vim.keymap.set('v', 'p', '"_dP')
+vim.keymap.set('v', 'p', '"_dP', { desc = 'Paste over the selection, keeping the clipboard' })
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Clear the search highlight' })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
@@ -34,8 +34,8 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Remap j and k to move by visual lines when no count is given.
-vim.keymap.set('n', 'j', "(v:count == 0 ? 'gj' : 'j')", { expr = true, silent = true })
-vim.keymap.set('n', 'k', "(v:count == 0 ? 'gk' : 'k')", { expr = true, silent = true })
+vim.keymap.set('n', 'j', "(v:count == 0 ? 'gj' : 'j')", { expr = true, silent = true, desc = 'Move down by visual line, or [count] real lines' })
+vim.keymap.set('n', 'k', "(v:count == 0 ? 'gk' : 'k')", { expr = true, silent = true, desc = 'Move up by visual line, or [count] real lines' })
 
 vim.keymap.set('n', '<leader>d', function()
   if vim.diagnostic.config().virtual_lines then
@@ -43,4 +43,4 @@ vim.keymap.set('n', '<leader>d', function()
   else
     vim.diagnostic.config { virtual_lines = { current_line = true } }
   end
-end, {})
+end, { desc = 'Toggle full [D]iagnostic lines' })

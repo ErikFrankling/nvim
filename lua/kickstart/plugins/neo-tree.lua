@@ -13,7 +13,10 @@ return {
   },
   cmd = 'Neotree',
   keys = {
-    { '<leader>tr', ':Neotree reveal<CR>', { desc = 'NeoTree reveal' } },
+    -- NOTE: `desc` belongs on the entry itself. lazy.nvim reads [1] as the lhs
+    -- and [2] as the rhs and drops every other positional element, so a `desc`
+    -- tucked into a third one never reaches the mapping.
+    { '<leader>tr', ':Neotree reveal<CR>', desc = '[T]oggle the file t[r]ee' },
   },
   opts = {
     filesystem = {
